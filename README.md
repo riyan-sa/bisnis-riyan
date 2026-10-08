@@ -74,9 +74,40 @@ Urutan yang disarankan: US-01, US-02, US-03, US-04, US-05, US-06, lalu fitur bon
 2. Lengkapi bagian di bawah ini.
 3. Push perubahan terakhir sebelum batas waktu.
 
+## Tentang Web Ini
+
+**Toko Riyan** adalah aplikasi web katalog produk UMKM modern yang memudahkan calon pembeli melihat daftar produk dan melakukan pemesanan secara langsung lewat WhatsApp. Aplikasi ini juga dilengkapi dengan panel admin yang aman untuk mengelola katalog produk dan akun toko.
+
+### Fitur Utama
+
+#### Untuk Pengunjung (Calon Pembeli)
+- **Katalog Produk Dinamis (US-01):** Menampilkan seluruh produk toko yang diambil langsung dari database Supabase secara server-side, lengkap dengan foto, nama, kategori, dan harga berformat rupiah.
+- **Detail Produk (US-02):** Halaman khusus per produk (`/produk/[id]`) untuk melihat deskripsi lengkap dan foto produk, dengan penanganan halaman 404 jika produk tidak ditemukan.
+- **Pemesanan via WhatsApp (US-03):** Tombol "Pesan via WhatsApp" yang membuka obrolan ke nomor resmi toko dengan pesan yang sudah terisi otomatis (nama dan harga produk).
+
+#### Untuk Pemilik Toko (Admin)
+- **Login Admin Aman (US-04):** Autentikasi menggunakan Supabase Auth dengan `@supabase/ssr` dan cookie berbasis Server Actions.
+- **Ganti Password (US-05):** Fitur untuk mengganti password bawaan admin dengan validasi minimal 8 karakter di sisi server.
+- **Proteksi Halaman Admin (US-06):** Seluruh rute `/admin` (kecuali `/admin/login`) terlindungi oleh `proxy.js`, memastikan pengunjung yang belum login dialihkan ke halaman login.
+- **Manajemen Produk dari Database (US-07 s/d US-10):**
+  - Melihat daftar produk langsung dari database (`/admin`).
+  - Menambah produk baru (`/admin/produk/baru`).
+  - Mengubah data produk yang ada (`/admin/produk/[id]/ubah`).
+  - Menghapus produk dengan dialog konfirmasi.
+  - Seluruh aksi manipulasi data terlindungi login di sisi server dan mematuhi Row Level Security (RLS).
+
+### Arsitektur & Teknologi
+- **Framework:** Next.js 16 (App Router, Server Components & Server Actions)
+- **Styling:** Tailwind CSS 4
+- **Database & Auth:** Supabase (PostgreSQL dengan RLS aktif, Supabase Auth via `@supabase/ssr`)
+- **Deployment:** Vercel
+
+---
+
 ## Tentang aplikasi ini
 
-- **Nama usaha:**
-- **Pembuat:**
-- **Link aplikasi:**
-- **Fitur bonus yang dikerjakan:**
+- **Nama usaha:** Toko Riyan
+- **Tagline:** Produk Lokalan Orang Depok, siap dipesan lewat WhatsApp.
+- **Pembuat:** Riyan
+- **Nomor WhatsApp Toko:** 6288213701982
+- **Fitur yang diselesaikan:** US-01 (Katalog DB), US-02 (Detail Produk), US-03 (Pesan via WhatsApp), US-04 (Login Admin), US-05 (Ganti Password), US-06 (Proteksi Admin / proxy.js), US-07 (List Produk Admin DB), US-08 (Tambah Produk), US-09 (Ubah Produk), US-10 (Hapus Produk).
